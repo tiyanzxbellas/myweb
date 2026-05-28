@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tiyanz - Semua Link</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                background: #0a0a0a;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                position: relative;
+                overflow-x: hidden;
+            }
+
+            body::before {
+                content: '';
+                position: fixed;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background:
+                    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(183, 148, 244, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+                animation: rotate 20s linear infinite;
+                z-index: -1;
+            }
+
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* Loading Screen */
+            .loading-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #0a0a0a;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                transition: opacity 0.5s, visibility 0.5s;
+            }
+
+            .loading-screen.hidden {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            .loader {
+                width: 60px;
+                height: 60px;
+                border: 4px solid rgba(102, 126, 234, 0.2);
+                border-top-color: #667eea;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .loading-text {
+                color: #667eea;
+                margin-top: 20px;
+                font-size: 16px;
+                font-weight: 600;
+                letter-spacing: 2px;
+            }
+
+            /* Welcome Popup */
+            .welcome-popup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9998;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s, visibility 0.5s;
+            }
+
+            .welcome-popup.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .popup-content {
+                background: rgba(20, 20, 20, 0.9);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 24px;
+                padding: 40px;
+                max-width: 400px;
+                width: 90%;
+                text-align: center;
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+                animation: popupIn 0.6s ease-out forwards;
+            }
+
+            @keyframes popupIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.8) translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            .popup-content h2 {
+                color: #ffffff;
+                font-size: 28px;
+                margin-bottom: 15px;
+                font-weight: 700;
+            }
+
+            .popup-content p {
+                color: #a0a0a0;
+                font-size: 16px;
+                margin-bottom: 30px;
+                line-height: 1.5;
+            }
+
+            .ok-button {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 16px;
+                padding: 16px 32px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            }
+
+            .ok-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            }
+
+            .ok-button:active {
+                transform: translateY(0);
+            }
+
+            .container {
+                max-width: 680px;
+                width: 100%;
+                background: rgba(20, 20, 20, 0.8);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 24px;
+                padding: 50px 40px;
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+                animation: fadeIn 0.8s ease-out;
+                position: relative;
+                opacity: 0;
+                transition: opacity 0.5s;
+            }
+
+            .container.visible {
+                opacity: 1;
+            }
+
+            .container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 45px;
+                opacity: 0;
+                animation: slideDown 0.6s ease-out 0.3s forwards;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .avatar {
+                width: 110px;
+                height: 110px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 25px;
+                font-size: 42px;
+                color: white;
+                font-weight: bold;
+                box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+                border: 3px solid rgba(255, 255, 255, 0.1);
+                position: relative;
+                animation: bounce 2s ease-in-out infinite;
+            }
+
+            @keyframes bounce {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            .avatar::before {
+                content: '';
+                position: absolute;
+                inset: -3px;
+                border-radius: 50%;
+                padding: 3px;
+                background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                animation: spinBorder 3s linear infinite;
+            }
+
+            @keyframes spinBorder {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            h1 {
+                color: #ffffff;
+                font-size: 32px;
+                margin-bottom: 12px;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+            }
+
+            .subtitle {
+                color: #a0a0a0;
+                font-size: 16px;
+                font-weight: 400;
+            }
+
+            .section-title {
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 600;
+                margin: 35px 0 18px;
+                padding-left: 12px;
+                border-left: 3px solid #667eea;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                opacity: 0;
+                animation: slideRight 0.5s ease-out forwards;
+            }
+
+            .freelance-title {
+                border-left-color: #FF9800;
+            }
+
+            .support-title {
+                border-left-color: #FF6B6B;
+            }
+
+            /* Tambahan section Lainnya */
+            .extra-title {
+                border-left-color: #4ECDC4;
+            }
+
+            @keyframes slideRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                }
+
+                to {
+                    opacity: 0.9;
+                    transform: translateX(0);
+                }
+            }
+
+            .floating-button {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 16px;
+                padding: 16px 32px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+                display: block;
+                margin: 0 auto 30px;
+                width: 80%;
+                max-width: 300px;
+                opacity: 0;
+                animation: fadeInUp 0.5s ease-out forwards;
+            }
+
+            .freelance-button {
+                background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+                box-shadow: 0 10px 30px rgba(255, 152, 0, 0.4);
+            }
+
+            .freelance-button:hover {
+                box-shadow: 0 15px 40px rgba(255, 152, 0, 0.6);
+            }
+
+            .support-button {
+                background: linear-gradient(135deg, #FF6B6B 0%, #C44569 100%);
+                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            }
+
+            .support-button:hover {
+                box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+            }
+
+            /* Tombol untuk section Lainnya */
+            .extra-button {
+                background: linear-gradient(135deg, #4ECDC4 0%, #2C7A7B 100%);
+                box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+            }
+
+            .extra-button:hover {
+                box-shadow: 0 15px 40px rgba(78, 205, 196, 0.6);
+            }
+
+            .floating-button:hover {
+                transform: translateY(-3px);
+            }
+
+            .links-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9997;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s, visibility 0.5s;
+                cursor: pointer;
+            }
+
+            .links-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .links-content {
+                position: relative;
+                cursor: default;
+                padding-top: 20px;
+            }
+
+            .circle-container {
+                position: relative;
+                width: 350px;
+                height: 350px;
+                margin: 0 auto;
+            }
+
+            .circle-link {
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                color: white;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+                animation: circleAppear 0.5s ease-out forwards, float 3s ease-in-out infinite;
+                opacity: 0;
+                z-index: 1;
+                cursor: pointer;
+            }
+
+            .circle-link:hover {
+                transform: scale(1.15);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+                z-index: 2;
+            }
+
+            .circle-icon {
+                font-size: 24px;
+                margin-bottom: 5px;
+            }
+
+            .circle-label {
+                font-size: 10px;
+                font-weight: 500;
+                text-align: center;
+                max-width: 70px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            /* Warna tambahan untuk link baru */
+            .drachin {
+                background: linear-gradient(135deg, #2C3E50, #3498DB);
+            }
+
+            .webtoapk {
+                background: linear-gradient(135deg, #8E44AD, #9B59B6);
+            }
+
+            .mabar {
+                background: linear-gradient(135deg, #E67E22, #D35400);
+            }
+
+            .cloud-uploader {
+                background: linear-gradient(135deg, #00C9A7, #00A896);
+            }
+
+            .youtube {
+                background: linear-gradient(135deg, #FF0000, #CC0000);
+            }
+
+            .tiktok {
+                background: linear-gradient(135deg, #000000, #69C9D0, #EE1D52);
+            }
+
+            .instagram {
+                background: linear-gradient(135deg, #E1306C, #C13584, #833AB4, #5851DB);
+            }
+
+            .telegram {
+                background: linear-gradient(135deg, #0088cc, #005580);
+            }
+
+            .signal {
+                background: linear-gradient(135deg, #3A76F0, #2557C5);
+            }
+
+            .line {
+                background: linear-gradient(135deg, #00B900, #00A000);
+            }
+
+            .whatsapp {
+                background: linear-gradient(135deg, #25D366, #1DA851, #128C7E);
+            }
+
+            .whatsapp-group {
+                background: linear-gradient(135deg, #128C7E, #075E54);
+            }
+
+            .gemini {
+                background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05);
+            }
+
+            .store {
+                background: linear-gradient(135deg, #FF6B6B, #C44569, #8B2F5C);
+            }
+
+            .script {
+                background: linear-gradient(135deg, #FF9800, #FF5722);
+            }
+
+            .uploader {
+                background: linear-gradient(135deg, #00b09b, #96c93d);
+            }
+
+            .game {
+                background: linear-gradient(135deg, #9C27B0, #673AB7);
+            }
+
+            .setorwa {
+                background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            }
+
+            .kirimdulu {
+                background: linear-gradient(135deg, #2196F3, #0D47A1);
+            }
+
+            .rekomendasi {
+                background: linear-gradient(135deg, #FF9800, #F57C00);
+            }
+
+            .solvia {
+                background: linear-gradient(135deg, #6C5CE7, #4834D4);
+            }
+
+            .buzzer {
+                background: linear-gradient(135deg, #FF6B6B, #EE5A52);
+            }
+
+            .saweria {
+                background: linear-gradient(135deg, #FF6B6B, #C44569);
+            }
+
+            .idol {
+                background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            }
+
+            .teerid {
+                background: linear-gradient(135deg, #9B59B6, #8E44AD);
+            }
+
+            .sociabuzz {
+                background: linear-gradient(135deg, #3498DB, #2980B9);
+            }
+
+            @keyframes circleAppear {
+                from {
+                    opacity: 0;
+                    transform: scale(0.5) rotate(-180deg);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) rotate(0);
+                }
+            }
+
+            @keyframes float {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .overlay-title {
+                color: #ffffff;
+                font-size: 24px;
+                margin-bottom: 40px;
+                font-weight: 700;
+                text-align: center;
+            }
+
+            .freelance-popup {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s, visibility 0.5s;
+            }
+
+            .freelance-popup.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .popup-button {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 16px;
+                padding: 16px 32px;
+                font-size: 18px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+                margin: 0 10px;
+                min-width: 150px;
+            }
+
+            .popup-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            }
+
+            .popup-button.cancel {
+                background: linear-gradient(135deg, #666, #333);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            }
+
+            .popup-button.confirm {
+                background: linear-gradient(135deg, #FF6B6B, #EE5A52);
+                box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            }
+
+            @media (max-width: 480px) {
+                .container {
+                    padding: 35px 25px;
+                }
+
+                h1 {
+                    font-size: 26px;
+                }
+
+                .avatar {
+                    width: 90px;
+                    height: 90px;
+                    font-size: 36px;
+                }
+
+                .popup-content {
+                    padding: 30px 20px;
+                }
+
+                .popup-content h2 {
+                    font-size: 24px;
+                }
+
+                .circle-container {
+                    width: 320px;
+                    height: 320px;
+                }
+
+                .circle-link {
+                    width: 70px;
+                    height: 70px;
+                }
+
+                .circle-icon {
+                    font-size: 20px;
+                }
+
+                .circle-label {
+                    font-size: 9px;
+                }
+
+                .popup-button {
+                    padding: 14px 24px;
+                    font-size: 16px;
+                    min-width: 130px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loader"></div>
+            <div class="loading-text">TIYANZ</div>
+        </div>
+        <!-- Welcome Popup -->
+        <div class="welcome-popup" id="welcomePopup">
+            <div class="popup-content">
+                <h2>Selamat Datang!</h2>
+                <p>Terima kasih telah mengunjungi halaman link saya.</p>
+                <button class="ok-button" id="okButton">Oke</button>
+            </div>
+        </div>
+        <!-- Custom Popup untuk freelance -->
+        <div class="freelance-popup" id="freelancePopup">
+            <div class="popup-content" style="max-width: 450px;">
+                <h2 id="popupTitle">⚠️ Perhatian!</h2>
+                <p id="popupMessage">Deskripsi akan muncul di sini.</p>
+                <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button class="popup-button cancel" id="cancelPopup">Batal</button>
+                    <button class="popup-button confirm" id="confirmPopup">Buka Halaman</button>
+                </div>
+            </div>
+        </div>
+        <!-- Overlay untuk lingkaran link Sosial Media -->
+        <div class="links-overlay" id="sosmedOverlay">
+            <div class="links-content">
+                <h2 class="overlay-title">Sosial Media</h2>
+                <div class="circle-container" id="sosmedCircleContainer">
+                    <!-- Sosial Media Links akan ditambahkan melalui JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- Overlay untuk lingkaran link Website -->
+        <div class="links-overlay" id="websiteOverlay">
+            <div class="links-content">
+                <h2 class="overlay-title">Website</h2>
+                <div class="circle-container" id="websiteCircleContainer">
+                    <!-- Website Links akan ditambahkan melalui JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- Overlay untuk lingkaran link Freelance -->
+        <div class="links-overlay" id="freelanceOverlay">
+            <div class="links-content">
+                <h2 class="overlay-title">Freelance</h2>
+                <div class="circle-container" id="freelanceCircleContainer">
+                    <!-- Freelance Links akan ditambahkan melalui JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- Overlay untuk lingkaran link Dukungan -->
+        <div class="links-overlay" id="supportOverlay">
+            <div class="links-content">
+                <h2 class="overlay-title">Dukungan</h2>
+                <div class="circle-container" id="supportCircleContainer">
+                    <!-- Dukungan Links akan ditambahkan melalui JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- Overlay untuk lingkaran link Lainnya (Tambahan Baru) -->
+        <div class="links-overlay" id="extraOverlay">
+            <div class="links-content">
+                <h2 class="overlay-title">Lainnya</h2>
+                <div class="circle-container" id="extraCircleContainer">
+                    <!-- Extra Links akan ditambahkan melalui JavaScript -->
+                </div>
+            </div>
+        </div>
+        <!-- Audio Element -->
+        <audio id="backgroundMusic" loop>
+            <source src="https://files.catbox.moe/8xrr41.opus" type="audio/ogg">
+            <source src="https://files.catbox.moe/8xrr41.opus" type="audio/opus"> Browser Anda tidak mendukung elemen audio.
+        </audio>
+        <div class="container" id="mainContainer">
+            <div class="header">
+                <div class="avatar">TZ</div>
+                <h1>Tiyanz</h1>
+                <p class="subtitle">Hubungi & Kunjungi Semua Link Saya</p>
+            </div>
+            <div class="section-title">📱 Sosial Media</div>
+            <button class="floating-button" id="sosmedButton">Lihat Sosial Media</button>
+            <div class="section-title">🌐 Website</div>
+            <button class="floating-button" id="websiteButton">Lihat Website</button>
+            <div class="section-title freelance-title">💼 Freelance</div>
+            <button class="floating-button freelance-button" id="freelanceButton">Lihat Freelance</button>
+            <div class="section-title support-title">💝 Dukungan</div>
+            <button class="floating-button support-button" id="supportButton">Lihat Dukungan</button>
+            <!-- Section Baru: Lainnya (sesuai permintaan) -->
+            <div class="section-title extra-title">🎮 Lainnya</div>
+            <button class="floating-button extra-button" id="extraButton">Lihat Lainnya</button>
+        </div>
+        <script>
+            // Loading Screen
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').classList.add('hidden');
+                    document.getElementById('welcomePopup').classList.add('active');
+                }, 1500);
+            });
+            // Audio functionality
+            const audio = document.getElementById('backgroundMusic');
+            const okButton = document.getElementById('okButton');
+            const welcomePopup = document.getElementById('welcomePopup');
+            const mainContainer = document.getElementById('mainContainer');
+            okButton.addEventListener('click', function() {
+                audio.play().then(() => {
+                    welcomePopup.classList.remove('active');
+                    mainContainer.classList.add('visible');
+                    animateButtons();
+                }).catch(error => {
+                    console.error('Error playing audio:', error);
+                    welcomePopup.classList.remove('active');
+                    mainContainer.classList.add('visible');
+                    animateButtons();
+                });
+            });
+            // Data untuk link sosial media
+            const sosmedLinks = [{
+                url: "https://youtube.com/@septiyandaputra3957?si=3Ycdr3KxcNIuJCTt",
+                icon: "▶",
+                label: "YouTube",
+                class: "youtube"
+            }, {
+                url: "https://www.tiktok.com/@septiyanda_putra?_t=ZS-90Am9yJYW2b&_r=1",
+                icon: "🎵",
+                label: "TikTok",
+                class: "tiktok"
+            }, {
+                url: "https://www.instagram.com/septiyanda_putra?igsh=cjhsZXoxZm1nNnFu",
+                icon: "📷",
+                label: "Instagram",
+                class: "instagram"
+            }, {
+                url: "https://line.me/ti/p/Zkdx9DgTAS",
+                icon: "📱",
+                label: "LINE",
+                class: "line"
+            }, {
+                url: "https://t.me/Tiyanzxbella",
+                icon: "✈",
+                label: "Telegram",
+                class: "telegram"
+            }, {
+                url: "https://signal.me/#eu/oBP6bA62pn612XlhJoogWD-pT_JJOy98uzetByHykL0mQThOuzVBZZPRsbGGpJCc",
+                icon: "🔒",
+                label: "Signal",
+                class: "signal"
+            }, {
+                url: "https://wa.me/6283862356347",
+                icon: "💬",
+                label: "WhatsApp",
+                class: "whatsapp"
+            }, {
+                url: "https://chat.whatsapp.com/BZpOjmdb1enC0gI1bjXtpx?mode=ems_copy_t",
+                icon: "👥",
+                label: "Grup Bot",
+                class: "whatsapp-group"
+            }];
+            // Data untuk link website
+            const websiteLinks = [{
+                url: "https://tiyanzxbella.github.io/Uploader-web-media/",
+                icon: "📤",
+                label: "Uploader Media",
+                class: "uploader"
+            }, {
+                url: "https://tiyanzxbella.github.io/Gemini-ai/",
+                icon: "🤖",
+                label: "Gemini AI",
+                class: "gemini"
+            }, {
+                url: "https://tiyanzxbella.github.io/Kumpulan-script/",
+                icon: "📜",
+                label: "Kumpulan Script",
+                class: "script"
+            }, {
+                url: "https://tiyanzxbella.github.io/Game-sederhana/",
+                icon: "🎮",
+                label: "Game Sederhana",
+                class: "game"
+            }, {
+                url: "https://store.tiyangaming.web.id",
+                icon: "🛒",
+                label: "Store",
+                class: "store"
+            }];
+            // Data untuk link freelance (web cuan) dengan deskripsi masing-masing
+            const freelanceLinks = [{
+                url: "https://setorwa.com/signup?ref=43966",
+                icon: "💰",
+                label: "SetorWA",
+                class: "setorwa",
+                customPopup: true,
+                title: "SetorWA",
+                description: "Khusus WhatsApp. Website freelance untuk menerima pesan/panggilan WA dengan sistem pembayaran per tugas."
+            }, {
+                url: "https://kirimdulux1.com/dashboard",
+                icon: "📨",
+                label: "KirimDulu",
+                class: "kirimdulu",
+                customPopup: true,
+                title: "KirimDulu",
+                description: "Khusus WhatsApp. Platform freelance untuk mengirim pesan WA dengan sistem pembayaran per tugas."
+            }, {
+                url: "https://d1.3rx5.org/go/94505872",
+                icon: "🚀",
+                label: "Rekomendasi",
+                class: "rekomendasi",
+                customPopup: true,
+                title: "Rekomendasi",
+                description: "Khusus Indonesia. Support Telegram, WhatsApp, dan Line. Tidak gampang kebanned atau diblokir, tapi untuk WD cepat perlu banyak nomor."
+            }, {
+                url: "https://gilano.vip/pages/login/register?promo_code=051A4F9E",
+                icon: "🎯",
+                label: "Solvia",
+                class: "solvia",
+                customPopup: true,
+                title: "Solvia",
+                description: "Bisa untuk semua nomor sesuai list di webnya. Cek sendiri daftar operator yang didukung."
+            }, {
+                url: "https://www.trybuzzer.com/",
+                icon: "📢",
+                label: "Buzzer",
+                class: "buzzer",
+                customPopup: true,
+                title: "Buzzer",
+                description: "Website freelance khusus untuk clipper/buzzer. Tugasnya adalah menyebarkan konten atau promosi di media sosial dengan sistem pembayaran per tugas."
+            }];
+            // Data untuk link dukungan
+            const supportLinks = [{
+                url: "https://saweria.co/Septiyandaputra",
+                icon: "❤️",
+                label: "Saweria",
+                class: "saweria"
+            }, {
+                url: "https://idol.buylink.id/Tiyanzstore",
+                icon: "🎁",
+                label: "Idol",
+                class: "idol"
+            }, {
+                url: "https://teer.id/tiyanz",
+                icon: "📊",
+                label: "Teer.id",
+                class: "teerid"
+            }, {
+                url: "https://sociabuzz.com/tiyan_gaming/tribe",
+                icon: "🌟",
+                label: "Sociabuzz",
+                class: "sociabuzz"
+            }];
+            // Data untuk link Lainnya (tiga link baru + satu tambahan)
+            const extraLinks = [{
+                url: "https://tiyanzxbella.github.io/Drachin/",
+                icon: "🎬",
+                label: "Drachin",
+                class: "drachin"
+            }, {
+                url: "https://github.com/tiyanzxbella/Web-to-apk",
+                icon: "📱",
+                label: "Web to APK",
+                class: "webtoapk"
+            }, {
+                url: "https://github.com/tiyanzxbella/Retroverse-ppspp",
+                icon: "🎮",
+                label: "Mabar MHP3rd",
+                class: "mabar"
+            }, {
+                url: "https://cloud.tiyan.biz.id/",
+                icon: "☁️",
+                label: "Cloud Uploader",
+                class: "cloud-uploader"
+            }];
+            // Variabel global untuk menyimpan link freelance yang dipilih
+            let currentFreelanceLink = null;
+            // Fungsi untuk menampilkan popup freelance
+            function showFreelancePopup(link) {
+                currentFreelanceLink = link;
+                const popup = document.getElementById('freelancePopup');
+                const title = document.getElementById('popupTitle');
+                const message = document.getElementById('popupMessage');
+                title.textContent = `⚠️ ${link.title}`;
+                message.textContent = link.description;
+                popup.classList.add('active');
+            }
+            // Event listener untuk tombol Batal di popup freelance
+            document.getElementById('cancelPopup').addEventListener('click', function() {
+                document.getElementById('freelancePopup').classList.remove('active');
+                currentFreelanceLink = null;
+            });
+            // Event listener untuk tombol Buka Halaman di popup freelance
+            document.getElementById('confirmPopup').addEventListener('click', function() {
+                const popup = document.getElementById('freelancePopup');
+                const freelanceOverlay = document.getElementById('freelanceOverlay');
+                popup.classList.remove('active');
+                freelanceOverlay.classList.remove('active');
+                if (currentFreelanceLink) {
+                    window.open(currentFreelanceLink.url, '_blank');
+                }
+                currentFreelanceLink = null;
+            });
+            // Setup penutupan popup freelance saat klik di luar
+            document.getElementById('freelancePopup').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    currentFreelanceLink = null;
+                }
+            });
+            // Fungsi untuk membuat lingkaran link dalam formasi melingkar
+            function createCircleLinks(links, containerId, useSpecial = false) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = '';
+                let radius;
+                if (links.length <= 3) radius = 100;
+                else if (links.length <= 5) radius = 120;
+                else radius = 140;
+                const centerX = container.offsetWidth / 2;
+                const centerY = container.offsetHeight / 2;
+                links.forEach((link, index) => {
+                    let x, y;
+                    // Untuk support (4 link) atau extra (3 link) kita bisa pakai formasi melingkar biasa, 
+                    // atau khusus support bisa memakai fungsi sebelumnya, tapi di sini kita pakai melingkar saja agar konsisten.
+                    // Namun karena jumlah extra 3, radius mungkin perlu disesuaikan.
+                    if (useSpecial && links.length === 4) {
+                        // formasi silang untuk 4 link (seperti support sebelumnya)
+                        switch (index) {
+                            case 0:
+                                x = centerX - 40;
+                                y = centerY - radius - 40;
+                                break;
+                            case 1:
+                                x = centerX + radius - 40;
+                                y = centerY - 40;
+                                break;
+                            case 2:
+                                x = centerX - 40;
+                                y = centerY + radius - 40;
+                                break;
+                            case 3:
+                                x = centerX - radius - 40;
+                                y = centerY - 40;
+                                break;
+                        }
+                    } else {
+                        const angle = (index / links.length) * 2 * Math.PI;
+                        x = centerX + radius * Math.cos(angle) - 40;
+                        y = centerY + radius * Math.sin(angle) - 40;
+                    }
+                    const circleLink = document.createElement('div');
+                    circleLink.className = `circle-link ${link.class}`;
+                    circleLink.style.left = `${x}px`;
+                    circleLink.style.top = `${y}px`;
+                    circleLink.style.animationDelay = `${index * 0.1}s`;
+                    if (!link.customPopup) {
+                        circleLink.addEventListener('click', function() {
+                            window.open(link.url, '_blank');
+                        });
+                    } else {
+                        circleLink.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            showFreelancePopup(link);
+                        });
+                    }
+                    const circleIcon = document.createElement('div');
+                    circleIcon.className = 'circle-icon';
+                    circleIcon.textContent = link.icon;
+                    const circleLabel = document.createElement('div');
+                    circleLabel.className = 'circle-label';
+                    circleLabel.textContent = link.label;
+                    circleLink.appendChild(circleIcon);
+                    circleLink.appendChild(circleLabel);
+                    container.appendChild(circleLink);
+                });
+            }
+            // Inisialisasi semua lingkaran link
+            document.addEventListener('DOMContentLoaded', function() {
+                createCircleLinks(sosmedLinks, 'sosmedCircleContainer');
+                createCircleLinks(websiteLinks, 'websiteCircleContainer');
+                createCircleLinks(freelanceLinks, 'freelanceCircleContainer');
+                createCircleLinks(supportLinks, 'supportCircleContainer', true); // support 4 link dengan formasi silang
+                createCircleLinks(extraLinks, 'extraCircleContainer'); // extra 4 link formasi melingkar
+            });
+            // Fungsi untuk animasi tombol
+            function animateButtons() {
+                const buttons = document.querySelectorAll('.floating-button');
+                buttons.forEach((button, index) => {
+                    setTimeout(() => {
+                        button.style.opacity = 1;
+                    }, index * 200);
+                });
+            }
+            // Event listener untuk tombol sosial media
+            document.getElementById('sosmedButton').addEventListener('click', function() {
+                document.getElementById('sosmedOverlay').classList.add('active');
+            });
+            // Event listener untuk tombol website
+            document.getElementById('websiteButton').addEventListener('click', function() {
+                document.getElementById('websiteOverlay').classList.add('active');
+            });
+            // Event listener untuk tombol freelance
+            document.getElementById('freelanceButton').addEventListener('click', function() {
+                document.getElementById('freelanceOverlay').classList.add('active');
+            });
+            // Event listener untuk tombol dukungan
+            document.getElementById('supportButton').addEventListener('click', function() {
+                document.getElementById('supportOverlay').classList.add('active');
+            });
+            // Event listener untuk tombol Lainnya (extra)
+            document.getElementById('extraButton').addEventListener('click', function() {
+                document.getElementById('extraOverlay').classList.add('active');
+            });
+            // Fungsi untuk menutup overlay saat mengklik di luar konten
+            function setupOverlayClose(overlayId) {
+                const overlay = document.getElementById(overlayId);
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                    }
+                });
+                const linksContainer = overlay.querySelector('.circle-container');
+                if (linksContainer) {
+                    linksContainer.addEventListener('click', function(e) {
+                        if (e.target.closest('.circle-link')) {
+                            e.stopPropagation();
+                        }
+                    });
+                }
+            }
+            // Setup penutupan untuk semua overlay
+            setupOverlayClose('sosmedOverlay');
+            setupOverlayClose('websiteOverlay');
+            setupOverlayClose('freelanceOverlay');
+            setupOverlayClose('supportOverlay');
+            setupOverlayClose('extraOverlay');
+            // Parallax effect on scroll
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                document.body.style.setProperty('--scroll', scrolled * 0.5 + 'px');
+            });
+        </script>
+    </body>
+</html>
